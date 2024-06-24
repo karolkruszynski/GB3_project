@@ -20,9 +20,13 @@ def extract_team(info):
     if match:
         # split string after match and return second half
         return info.split(match.group())[1]
-    return None
+    return np.nan
 
 # Use fucntion to make new column
 df['Team'] = df['Driver and Team'].apply(extract_team)
 
 print(df['Team'])
+print(df)
+
+# Validation None data for Team column
+print(df[df['Team'].isna()])
