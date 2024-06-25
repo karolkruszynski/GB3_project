@@ -73,3 +73,18 @@ print(df['Points Gap To Leader'])
 # Drop NA columns for features races
 df.dropna(axis=1, how='all', inplace=True)
 print(df.columns)
+
+# Checking df after cleaning
+print(df.info())
+print(df.describe())
+
+
+# Analysis of driver and team performance
+
+# Average points per race for the Team
+team_mean_points = df.groupby(['Team'])['Points'].mean().sort_values(ascending=False)
+print(team_mean_points)
+
+# Average points per race for the Driver
+driver_mean_points = df.groupby(['Driver'])['Points'].mean().sort_values(ascending=False) / 12
+print(driver_mean_points)
