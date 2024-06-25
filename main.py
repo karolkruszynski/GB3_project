@@ -69,3 +69,7 @@ for driver in df['Driver']:
     leader_points = max(df['Points'])
     df['Points Gap To Leader'] = df['Points'].apply(lambda x: x - leader_points)
 print(df['Points Gap To Leader'])
+
+# Drop NA columns for features races
+df.dropna(axis=1, how='all', inplace=True)
+print(df.columns)
