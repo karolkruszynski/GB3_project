@@ -88,3 +88,11 @@ print(team_mean_points)
 # Average points per race for the Driver
 driver_mean_points = df.groupby(['Driver'])['Points'].mean().sort_values(ascending=False) / 12
 print(driver_mean_points)
+
+# Winning rate for Driver
+# Feature Races data
+races = ['R01', 'R02', 'R04', 'R05', 'R07', 'R08', 'R10', 'R11']
+
+# If wins add +1 to Winning rate for Driver column
+df['Wins in Feature Race'] = df[races].apply(lambda row: (row == 35).sum(), axis=1)
+print(df[['Wins in Feature Race', 'Driver', 'Team']].sort_values(ascending=False, by='Wins in Feature Race'))
