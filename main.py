@@ -85,8 +85,12 @@ print(df.describe())
 
 # Average points per race for the Team
 team_mean_points = df.groupby(['Team'])['Points'].mean().sort_values(ascending=False)
-print(team_mean_points)
-
+team_mean_points_df = team_mean_points.reset_index()
+team_mean_points_df.columns = ['Team', 'Points for Team']
+# Ploting data
+plt.figure(figsize=(13,6))
+sns.scatterplot(data=team_mean_points_df, x='Points for Team', y='Team', hue='Team')
+plt.show()
 # Average points per race for the Driver
 driver_mean_points = df.groupby(['Driver'])['Points'].mean().sort_values(ascending=False) / 12
 # Convert Series na DataFrame
