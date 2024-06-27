@@ -109,3 +109,11 @@ races = ['R01', 'R02', 'R04', 'R05', 'R07', 'R08', 'R10', 'R11']
 # If wins add +1 to Winning rate for Driver column
 df['Wins in Feature Race'] = df[races].apply(lambda row: (row == 35).sum(), axis=1)
 print(df[['Wins in Feature Race', 'Driver', 'Team']].sort_values(ascending=False, by='Wins in Feature Race').head(5))
+
+# Drivers who score point in every race
+race_columns = ['R01', 'R02', 'R03', 'R04', 'R05', 'R07', 'R08', 'R09', 'R10', 'R11', 'R12']
+# Check if all data in row are greater than 0
+df_filtered = df[df[race_columns].gt(0).all(axis=1)]
+# Filter drivers by df with gt0
+drivers_with_points = df_filtered['Driver'].unique()
+print(drivers_with_points)
