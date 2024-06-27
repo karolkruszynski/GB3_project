@@ -108,30 +108,4 @@ races = ['R01', 'R02', 'R04', 'R05', 'R07', 'R08', 'R10', 'R11']
 
 # If wins add +1 to Winning rate for Driver column
 df['Wins in Feature Race'] = df[races].apply(lambda row: (row == 35).sum(), axis=1)
-print(df[['Wins in Feature Race', 'Driver', 'Team']].sort_values(ascending=False, by='Wins in Feature Race'))
-
-# Wybierz cechy (wejścia) i docelową zmienną (wyjście)
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-df.fillna(0,inplace=True)
-X = df[races]
-y = df['Wins in Feature Race']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-# Inicjalizuj model regresji logistycznej
-model = LogisticRegression()
-
-# Trenuj model na danych treningowych
-model.fit(X_train, y_train)
-
-# Przewiduj wyniki na danych testowych
-y_pred = model.predict(X_test)
-
-# Oblicz dokładność modelu na danych testowych
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Dokładność modelu: {accuracy}")
-driver_pred = df[df['Num']==22]
-print(driver_pred)
-win_probability = model.predict_proba(driver_pred['Points'])[:, 1]
-print(f"Prawdopodobieństwo wygranej dla nowych danych: {win_probability}")
-
+print(df[['Wins in Feature Race', 'Driver', 'Team']].sort_values(ascending=False, by='Wins in Feature Race').head(5))
