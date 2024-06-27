@@ -119,8 +119,30 @@ drivers_with_points = df_filtered['Driver'].unique()
 print(drivers_with_points)
 
 ## WHAT IF?
+
 # What if we count points only for Sprint Races?
 df_filtered = df[['R03', 'R09', 'R12', 'Driver']].copy()
 df_filtered.fillna(0, inplace=True)
 df_filtered['Sprint_Points'] = df_filtered[['R03', 'R09', 'R12']].sum(axis=1)
 print(df_filtered[['Driver', 'Sprint_Points']].sort_values(ascending=False, by='Sprint_Points'))
+
+# What if we count points only for Feature Races?
+df_filtered2 = df[['R01', 'R02', 'R04', 'R05', 'R07', 'R08', 'R10', 'R11', 'Driver']].copy()
+df_filtered2.fillna(0, inplace=True)
+df_filtered2['Feature_Points'] = df_filtered2[['R01', 'R02', 'R04', 'R05', 'R07', 'R08', 'R10', 'R11']].sum(axis=1)
+print(df_filtered2[['Driver', 'Feature_Points']].sort_values(ascending=False, by='Feature_Points'))
+
+# Plot with Sprint Races and Feature Races side by side for Top10 Drivers
+
+df_filtered_conn = pd.concat([df_filtered['Driver'], df_filtered['Sprint_Points'], df_filtered2['Feature_Points']], axis=1).head(10)
+df_melted = pd.melt(df_filtered_conn, id_vars='Driver', var_name='Race_Type', value_name='Points')
+# Ploting
+plt.figure(figsize=(12, 6))
+sns.barplot(data=df_melted, x='Driver', y='Points', hue='Race_Type', dodge=True)
+plt.title('Comparison of Sprint Points and Feature Points')
+plt.xlabel('Driver')
+plt.ylabel('Points')
+plt.xticks(rotation=90)
+plt.legend(title='Race Type', loc='upper right')
+plt.tight_layout()
+plt.show()
