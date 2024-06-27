@@ -117,3 +117,10 @@ df_filtered = df[df[race_columns].gt(0).all(axis=1)]
 # Filter drivers by df with gt0
 drivers_with_points = df_filtered['Driver'].unique()
 print(drivers_with_points)
+
+## WHAT IF?
+# What if we count points only for Sprint Races?
+df_filtered = df[['R03', 'R09', 'R12', 'Driver']].copy()
+df_filtered.fillna(0, inplace=True)
+df_filtered['Sprint_Points'] = df_filtered[['R03', 'R09', 'R12']].sum(axis=1)
+print(df_filtered[['Driver', 'Sprint_Points']].sort_values(ascending=False, by='Sprint_Points'))
