@@ -146,3 +146,5 @@ plt.xticks(rotation=90)
 plt.legend(title='Race Type', loc='upper right')
 plt.tight_layout()
 plt.show()
+
+df.to_excel('gb3_data.xlsx')
