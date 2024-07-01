@@ -53,3 +53,15 @@ answer_2 = df['Diff'].idxmin()
 answer_2_1 = df.loc[answer_2]['Driver']
 answer_2_2 = df.loc[answer_2]['Diff']
 print(f'Driver with smallest gap to next Driver was: {answer_2_1} with {answer_2_2} seconds')
+
+# Driver with the highest Top Speed in the race
+answer_3 = df['KPH'].idxmax()
+answer_3_1 = df.loc[answer_3]['Driver']
+answer_3_2 = df.loc[answer_3]['KPH']
+print(f'Driver with the highest Top Speed was {answer_3_1} with {round(answer_3_2,2)} KPH')
+
+# Driver with the lowest Top Speed in the race
+answer_4 = df['KPH'].idxmin()
+answer_4_1 = df.loc[answer_4]['Driver']
+answer_4_2 = df.loc[answer_4]['KPH']
+print(f'Driver with the lowest Top Speed was {answer_4_1} with {round(answer_4_2,2)} KPH')
