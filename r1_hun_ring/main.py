@@ -21,13 +21,21 @@ def convert_to_timedelta(time_str):
     milliseconds = int(parts[2])
     return pd.to_timedelta(minutes * 60 + seconds, unit='s') + pd.to_timedelta(milliseconds, unit='ms')
 
-# Apply conversion function to 'Best' column
+# Apply conversion function to 'Best' & 'Time' columns
 df['Best'] = df['Best'].apply(convert_to_timedelta)
-#df['Best'] = df['Best'].astype(str).str[7:]  # Slice to remove '0 days ' prefix
-print(df.loc[0]['Best'] - df.loc[1]['Best'])
+df['Time'] = df['Time'].apply(convert_to_timedelta)
 
-# Format timedelta column for display
-# Format timedelta column for display
+# Result Checking
+#print(df['Best'].dtype)
+#print(df)
+#print(df.loc[0]['Best'] - df.loc[1]['Best'])
+# Unfortunetly I need to leave format as it was with '0 days HH:' prefix to execute calculation on it.
 
-print(df['Best'].dtype)
-print(df)
+# Gap column is not a time dtype, but it's a float64 soo I leave it
+#print(df['Gap'])
+
+# MPH column need to be converted into KPH ;)
+df['MPH'] = df['MPH'] * 1.609344
+df.rename(columns={'MPH': 'KPH'}, inplace=True)
+#print(df['KPH'])
+
