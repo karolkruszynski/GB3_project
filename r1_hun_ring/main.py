@@ -70,4 +70,4 @@ print(f'Driver with the lowest Top Speed was {answer_4_1} with {round(answer_4_2
 answer_5 = df['Fastest on Lap'].value_counts()
 answer_5_1 = answer_5.idxmax()
 answer_5_2 = answer_5.max()
-print(f'The moste Drivers set their FL on lap {answer_5_1}, it was {answer_5_2} times')
+print(f'The moste Drivers set their FL on lap {answer_5_1}, it was {answer_5_2} times. 10th lap was second to last lap.')
