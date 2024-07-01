@@ -36,6 +36,20 @@ df['Time'] = df['Time'].apply(convert_to_timedelta)
 
 # MPH column need to be converted into KPH ;)
 df['MPH'] = df['MPH'] * 1.609344
-df.rename(columns={'MPH': 'KPH'}, inplace=True)
+df.rename(columns={'MPH': 'KPH', 'Driver Team': 'Driver'}, inplace=True)
+
 #print(df['KPH'])
 
+## Analysis
+
+# Which driver have the largest 'Diff' to next Driver?
+answer_1 = df['Diff'].idxmax()
+answer_1_1 = df.loc[answer_1]['Driver']
+answer_1_2 = df.loc[answer_1]['Diff']
+print(f'Driver with largest gap to next Driver was: {answer_1_1} with {answer_1_2} seconds')
+
+# Which driver have the smallest 'Diff' to next Driver?
+answer_2 = df['Diff'].idxmin()
+answer_2_1 = df.loc[answer_2]['Driver']
+answer_2_2 = df.loc[answer_2]['Diff']
+print(f'Driver with smallest gap to next Driver was: {answer_2_1} with {answer_2_2} seconds')
