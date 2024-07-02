@@ -79,4 +79,4 @@ answer_6_2 = df.loc[answer_6]['Best']
 answer_6_3 = str(answer_6_2).split(' ')
 answer_6_4 = answer_6_3[2]
 answer_6_4_1 = answer_6_4.split('00:')
-print(f'{answer_6_1} set Fastest Lap with {answer_6_4_1[1][:-3]}')
+print(f'{answer_6_1} set Fastest Lap with {answer_6_4_1[1][:-3]} on lap {df.loc[answer_6]['Fastest on Lap']}')
