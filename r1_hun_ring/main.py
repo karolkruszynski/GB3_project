@@ -92,3 +92,6 @@ elif correlation_value >= 0.0 and correlation_value <= 0.5:
     print(f'Correlation is week positive: {correlation_value}')
 elif correlation_value > -0.5 and correlation_value < 0.0:
     print(f'Correlation is week negative: {correlation_value}')
+
+# Export as XLSX
+df.to_excel('gb3_r1_hun_fixed.xlsx')
