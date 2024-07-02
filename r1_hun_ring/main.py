@@ -70,4 +70,13 @@ print(f'Driver with the lowest Top Speed was {answer_4_1} with {round(answer_4_2
 answer_5 = df['Fastest on Lap'].value_counts()
 answer_5_1 = answer_5.idxmax()
 answer_5_2 = answer_5.max()
-print(f'The moste Drivers set their FL on lap {answer_5_1}, it was {answer_5_2} times. 10th lap was second to last lap.')
+print(f'The moste Drivers set their FL (Fastest Lap) on lap {answer_5_1}, it was {answer_5_2} times. 10th lap was second to last lap.')
+
+# Which Driver set the Fastest Lap in this race?
+answer_6 = df['Best'].idxmin()
+answer_6_1 = df.loc[answer_6]['Driver']
+answer_6_2 = df.loc[answer_6]['Best']
+answer_6_3 = str(answer_6_2).split(' ')
+answer_6_4 = answer_6_3[2]
+answer_6_4_1 = answer_6_4.split('00:')
+print(f'{answer_6_1} set Fastest Lap with {answer_6_4_1[1][:-3]}')
