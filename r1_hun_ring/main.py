@@ -80,3 +80,15 @@ answer_6_3 = str(answer_6_2).split(' ')
 answer_6_4 = answer_6_3[2]
 answer_6_4_1 = answer_6_4.split('00:')
 print(f'{answer_6_1} set Fastest Lap with {answer_6_4_1[1][:-3]} on lap {df.loc[answer_6]['Fastest on Lap']}')
+
+# Calculate correlation between 'KPH' and 'Pos' using pandas
+correlation_matrix = df[['KPH', 'Pos']].corr()
+correlation_value = correlation_matrix.loc['KPH', 'Pos']
+if correlation_value <= -0.5:
+    print(f'Correlation is strongly negative: {correlation_value}')
+elif correlation_value >= 1:
+    print(f'Correlation is strongly positive: {correlation_value}')
+elif correlation_value >= 0 & correlation_value <= 0.5:
+    print(f'Correlation is week positive: {correlation_value}')
+elif correlation_value > -0.5 & correlation_value < 0:
+    print(f'Correlation is week negative: {correlation_value}')
