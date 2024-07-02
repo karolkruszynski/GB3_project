@@ -88,7 +88,7 @@ if correlation_value <= -0.5:
     print(f'Correlation is strongly negative: {correlation_value}')
 elif correlation_value >= 1:
     print(f'Correlation is strongly positive: {correlation_value}')
-elif correlation_value >= 0 & correlation_value <= 0.5:
+elif correlation_value >= 0.0 and correlation_value <= 0.5:
     print(f'Correlation is week positive: {correlation_value}')
-elif correlation_value > -0.5 & correlation_value < 0:
+elif correlation_value > -0.5 and correlation_value < 0.0:
     print(f'Correlation is week negative: {correlation_value}')
